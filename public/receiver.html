@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Receiver</title>
+</head>
+<body>
+  <h2>Latest Message</h2>
+  <div id="msg">Loading...</div>
+
+  <script>
+    async function fetchMessage() {
+      try {
+        const res = await fetch("https://nw-senderbackend.onrender.com/receive");
+        const text = await res.text();
+        document.getElementById("msg").innerText = text;
+      } catch {
+        document.getElementById("msg").innerText = "❌ Error fetching message";
+      }
+    }
+    fetchMessage();
+    setInterval(fetchMessage, 2000); // har 2 sec me refresh
+  </script>
+</body>
+</html>
